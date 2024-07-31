@@ -5,10 +5,12 @@ import { User } from './entities/user';
 
 @Injectable()
 export class UsersService {
-  private readonly users: User[] = [new User('mikael', 'melo@gmail.com')];
+  private readonly users: User[] = [];
   
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    const newUser = new User(createUserDto.name, createUserDto.email);
+    this.users.push(newUser);
+    return newUser;
   }
 
   findAll() {
